@@ -3,21 +3,29 @@
 An implementation of FIG-FORTH 1802 on the MAX1000 development board from trenz Electronics.
 
 https://www.trenz-electronic.de
+https://www.arrow.com/en/campaigns/max1000
 
 ### Features ###
 
 This version includes these features:
 
     * CDP1802 VHDL core
-    * 28K RAM
+    * 32K RAM
     * UART connected to the onboard USB serial port
     * 22 GPIO pins
     * 8 onboard LEDS
 
-### Building and programming ###
+### Building ###
 
-The code is built with Quartus, create a project by following the instructions in the MAX1000 manual, use
-the source files listed below. The project and top-level module name is 'maxforth'.
+Build using Quartus, follow these steps:
+  
+  * Create an empty project
+  * Name the top level module 'maxforth'
+  * Add the files in the list to the project
+  * Open the TCL Scripts window (Tools=>TCL Scripts...)
+  * Select and run the 'MAX1000-IOs.tcl' script
+  * Select Processing=>Start Compilation
+  * Wait for the compilation to complete
 
 ```
 maxforth.vhd
@@ -25,19 +33,13 @@ mx1802.vhd
 ram.vhd
 uart.vhd
 gpio.vhd
-
+max1000-fig-forth.sdc
+MAX1000-IOs.tcl
 ``` 
 
-Then import the assignments from the 'max1000.qsf' file.
+### Programming ###
 
-Before building, navigate to 'Assignments>Device>Device and Pin Options>Configuration' and change the
-configuration mode to 'Single Compressed Image with Memory Initialization (256Kbits UFM)' if its not
-already set to this.
-
-![config](/pictures/config.png)
-
-After building, download to the MAX1000 with the programmer as explained in the manual. Use the '\*.pof' file
-for this so the FPGA configuration is stored in flash.
+Program the FPGA configuration to flash using the 'maxforth.pof' file.
 
 ### Testing ###
 

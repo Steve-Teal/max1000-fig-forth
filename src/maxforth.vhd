@@ -9,7 +9,7 @@
 --     * UART console interface over the USB serial port (115200, 8-n-1)
 --     * 8-LEDS memory mapped LEDS
 --     * 23 GPIO pins
---     * 28K RAM
+--     * 32K RAM
 --
 -- See readme.md for more information
 --
@@ -197,7 +197,7 @@ begin
 		
 
 	 data_bus <= cpu_data or ram_data or uart_data or gpio_data;	
-	 ram_cs <= '0' when address(15) = '0' and address(14 downto 12) /= "111" else '1';
+	 ram_cs <= address(15);
 	 ef <= "0000";
 	 
 	 

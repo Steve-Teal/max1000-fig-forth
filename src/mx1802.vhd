@@ -366,7 +366,7 @@ begin
 	
 	reg_file_write_exec <= inc or dec or lda or ldxa or outp or retdis or stxd or mark or (immd and not shift) or (sbr and not condition) or lbr_reg_we;
 	
-	process(state,idl,plo,phi,reg_file_write_exec,sbr)
+	process(state,idl,plo,phi,reg_file_write_exec,sbr,lbr_reg_we)
 	begin
 		reg_file_write_lo <= '0';
 		reg_file_write_hi <= '0';
